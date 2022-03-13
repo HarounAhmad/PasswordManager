@@ -1,0 +1,23 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+        <th scope="col">loginText</th>
+        <th scope="col">password</th>
+
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of entries">
+          <td>{{ entry.id }}</td>
+          <td>{{ entry.title }}</td>
+          <td>{{ entry.loginText }}</td>
+          <td>{{ entry.password }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
