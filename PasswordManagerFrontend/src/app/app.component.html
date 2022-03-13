@@ -3,8 +3,9 @@
     <div class="col-md-12">
       <div class="card bg-dark my-5">
         <div class="card-body">
-          <h2 class="card-title text-center text-white py-3">PasswordManager</h2>
-
+          <div>
+            <button pButton type="button" class="p-button-text" (click)="goToHome()"><h2 class="card-title text-center text-white py-3">PasswordManager</h2> </button>
+          </div>
 
           <button pButton type="button" label="List Entries" class="p-button-text" (click)="goToEntries()"></button>
           <button pButton type="button" label="New Entry" class="p-button-text" (click)="goToAddNewEntry()"></button>
