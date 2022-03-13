@@ -1,23 +1,93 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">title</th>
-        <th scope="col">loginText</th>
-        <th scope="col">password</th>
+<p-table [value]="entries" responsiveLayout="scroll" [rows]="7" [paginator]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Title</th>
+      <th>Login</th>
+      <th>Password</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-entry>
+    <tr>
+      <td>{{entry.title}}</td>
+      <td>{{entry.loginText}}</td>
+      <td>{{entry.password}}</td>
+      <td>
+        <button pButton icon="pi pi-copy" class="p-button-text" (click)="copyPassword(entry.password)"></button>
+        <button pButton icon="pi pi-times" class="p-button-text" (click)="deleteEntry(entry.id)"></button>
+        <button pButton icon="pi pi-pencil" class="p-button-text" (click)="showTaskEdit(entry)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
 
-      </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let entry of entries">
-          <td>{{ entry.id }}</td>
-          <td>{{ entry.title }}</td>
-          <td>{{ entry.loginText }}</td>
-          <td>{{ entry.password }}</td>
-        </tr>
-      </tbody>
-    </table>
+<p-dialog header="Edit Task" [(visible)]="display" (onHide)="onDialogHide()" [draggable]="false" [style]="{overflow: 'hidden'}">
+  <div class="p-field p-align-center vertical-container" [style]="{overflow: 'hidden'}">
+    <div class="p-field p-grid" [style]="{overflow: 'hidden'}">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="title">Title</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.title"
+                 class="form-control"
+                 id="title"
+                 name="title"
+                 placeholder="Title"
+                 required #title="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '1%'}"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="loginText">Login</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.loginText"
+                 class="form-control"
+                 id="loginText"
+                 name="loginText"
+                 placeholder="Login"
+                 required #content="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '1%'}"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="password">Password</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.password"
+                 class="form-control"
+                 id="password"
+                 name="password"
+                 placeholder="Password"
+                 required #content="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '1%'}"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-3">
+        <button pButton type="submit" [disabled]="checkTaskIsValid()"
+                (click)="editEntry(selectEntry)"
+                class="p-button-text">Submit
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+
+</p-dialog>

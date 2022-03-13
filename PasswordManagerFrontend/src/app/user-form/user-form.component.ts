@@ -28,6 +28,8 @@ export class UserFormComponent {
     this.router.navigate(['/entries'])
   }
 
-
+  checkEntryIsValid(){
+    return !(this.entry.title.length > 0 && this.entry.loginText.length > 0 && this.entry.password.length > 0)
+  }
 
 }

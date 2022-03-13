@@ -18,4 +18,13 @@ export class EntryService {
   public save(entry: Entry){
     return this.http.post<Entry>(this.entriesUrl, entry)
   }
+
+  public delete(id: number){
+    return this.http.delete<Entry>(this.entriesUrl + "/" + id)
+  }
+
+  public edit(entry: Entry){
+    return this.http.put<Entry>(this.entriesUrl, entry)
+  }
+
 }

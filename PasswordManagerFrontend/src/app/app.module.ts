@@ -8,6 +8,12 @@ import { UserFormComponent } from './user-form/user-form.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {EntryService} from "./entry.service";
+import {ButtonModule} from "primeng/button";
+import {InputTextModule} from "primeng/inputtext";
+import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   declarations: [
@@ -19,7 +25,13 @@ import {EntryService} from "./entry.service";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    ClipboardModule,
   ],
   providers: [EntryService],
   bootstrap: [AppComponent]

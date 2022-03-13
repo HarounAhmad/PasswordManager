@@ -1,0 +1,19 @@
+#AddEntryFormContainer{
+  margin: auto;
+  width: 30%;
+
+  padding: 10px;
+}
+
+#formInput1 {
+  margin-bottom: 5%;
+  margin-top: 5%;
+
+}
+#formInput2 {
+  margin-bottom: 5%;
+}
+#formInput3 {
+  margin-bottom: 5%;
+}
+

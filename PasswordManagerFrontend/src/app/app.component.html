@@ -4,14 +4,10 @@
       <div class="card bg-dark my-5">
         <div class="card-body">
           <h2 class="card-title text-center text-white py-3">PasswordManager</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/entries" class="btn btn-info">List Users</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/newEntry" class="btn btn-info">Add User</a>
-            </li>
-          </ul>
+
+
+          <button pButton type="button" label="List Entries" class="p-button-text" (click)="goToEntries()"></button>
+          <button pButton type="button" label="New Entry" class="p-button-text" (click)="goToAddNewEntry()"></button>
         </div>
       </div>
       <router-outlet></router-outlet>

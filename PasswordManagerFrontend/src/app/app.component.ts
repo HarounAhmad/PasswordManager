@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {EntryService} from "./entry.service";
+import {Entry} from "./entry";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PasswordManagerFrontend';
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+  }
+
+  goToEntries() {
+    this.router.navigate(['/entries'])
+  }
+
+  goToAddNewEntry() {
+    this.router.navigate(['/newEntry'])
+  }
+
 }
