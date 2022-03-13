@@ -41,7 +41,6 @@ public class PasswordController {
             currentEntry = java.util.Optional.of(
                     new Entry(
                             currentEntry.get().getId(),
-                            entry.getId(),
                             entry.getTitle(),
                             entry.getLoginText(),
                             entry.getPassword()
