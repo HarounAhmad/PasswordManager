@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Entry} from "./entry";
 import {Observable} from "rxjs";
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EntryService {
 
   private entriesUrl: string;
