@@ -24,6 +24,9 @@ public class Entry {
 
     }
 
+    public Entry(long id, long id1, String title, String loginText, String password) {
+    }
+
     public long getId() {
         return id;
     }
