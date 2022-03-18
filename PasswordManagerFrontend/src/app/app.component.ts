@@ -11,6 +11,8 @@ import {Entry} from "./entry";
 export class AppComponent {
   title = 'PasswordManagerFrontend';
 
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

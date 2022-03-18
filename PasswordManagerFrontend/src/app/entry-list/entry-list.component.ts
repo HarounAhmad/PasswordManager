@@ -3,6 +3,8 @@ import {Entry} from "../entry";
 import {EntryService} from "../entry.service"
 import {Router} from "@angular/router";
 import {Clipboard} from "@angular/cdk/clipboard";
+import {MenuItem} from "primeng/api";
+import {Table} from "primeng/table";
 
 @Component({
   selector: 'app-entry-list',
@@ -16,10 +18,13 @@ export class EntryListComponent implements OnInit {
   display: boolean = false;
   selectEntry: Entry = new Entry();
 
+
+
   constructor(
     private entryService: EntryService,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+  }
 
   ngOnInit(): void {
     this.findAll()
@@ -29,6 +34,7 @@ export class EntryListComponent implements OnInit {
     this.entryService.findAll().subscribe(data => {
       this.entries = data;
     });
+
   }
 
   onDialogHide() {
@@ -37,6 +43,10 @@ export class EntryListComponent implements OnInit {
     });
 
   }
+
+
+
+
 
   deleteEntry(id: number) {
     this.entryService.delete(id).subscribe(data => {
@@ -48,22 +58,24 @@ export class EntryListComponent implements OnInit {
   }
 
   editEntry(selectEntry: Entry) {
-      this.entryService.edit(selectEntry).subscribe(data => console.log(selectEntry.id))
+      this.entryService.edit(selectEntry).subscribe(data => console.log(selectEntry.id + "\n" + data))
       this.display = false
   }
 
-  showTaskEdit(entry: Entry) {
+  showEntryEdit(entry: Entry) {
     this.selectEntry = entry;
     this.display = true;
   }
 
-  checkTaskIsValid() {
+  checkEntryIsValid() {
     return !(this.selectEntry.title.length > 0 && this.selectEntry.password.length > 0 && this.selectEntry.loginText.length > 0)
   }
 
-
-
   copyPassword(password: string) {
     navigator.clipboard.writeText(password).then().catch(e => console.error(e));
+  }
+
+  clear(dt1: Table) {
+    dt1.clear();
   }
 }

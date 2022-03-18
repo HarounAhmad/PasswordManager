@@ -32,4 +32,8 @@ export class UserFormComponent {
     return !(this.entry.title.length > 0 && this.entry.loginText.length > 0 && this.entry.password.length > 0)
   }
 
+  onEnter() {
+    this.onSubmit();
+  }
+
 }

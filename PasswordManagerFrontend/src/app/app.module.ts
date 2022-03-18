@@ -14,6 +14,8 @@ import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import {TooltipModule} from "primeng/tooltip";
+import {PanelMenuModule} from "primeng/panelmenu";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     DialogModule,
     BrowserAnimationsModule,
     ClipboardModule,
+    TooltipModule,
+    PanelMenuModule,
   ],
   providers: [EntryService],
   bootstrap: [AppComponent]
