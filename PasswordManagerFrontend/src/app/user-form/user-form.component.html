@@ -1,0 +1,24 @@
+<div class="card my-5">
+  <div class="p-fluid grid" id="AddEntryFormContainer">
+    <div class="field col-12 md:col-4" id="formInput1">
+        <span class="p-float-label">
+            <input type="text" id="title" pInputText [(ngModel)]="entry.title">
+            <label for="title">Title</label>
+        </span>
+    </div>
+    <div class="field col-12 md:col-4" id="formInput2">
+        <span class="p-float-label">
+            <input type="text" id="loginText" pInputText [(ngModel)]="entry.loginText">
+            <label for="loginText">Login Text</label>
+        </span>
+    </div>
+    <div class="field col-12 md:col-4" id="formInput3">
+        <span class="p-float-label">
+            <input type="text" id="password" pInputText [(ngModel)]="entry.password">
+            <label for="password">Password</label>
+        </span>
+    </div>
+    <button pButton type="button" label="Submit" class="p-button-text"  (click)="onSubmit()" [disabled]="checkEntryIsValid()" ></button>
+
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div id="tableContainer">
+<p-table #dt1 [value]="entries" responsiveLayout="scroll" [rows]="7" [paginator]="true"
+[globalFilterFields]="['title', 'loginText']" id="table">
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+      <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal(($any($event.target).value), 'contains')" placeholder="Search keyword" />
+                </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+
+    <tr>
+      <th>
+        Title
+        <p-columnFilter type="text" field="title" display="menu"></p-columnFilter>
+      </th>
+      <th>
+        Login
+        <p-columnFilter type="text" field="loginText" display="menu"></p-columnFilter>
+      </th>
+      <th>Password</th>
+
+      <th></th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-entry>
+    <tr>
+      <td>{{entry.title}}</td>
+      <td>{{entry.loginText}}</td>
+      <td>{{entry.password}}</td>
+      <td>
+        <button pButton icon="pi pi-copy" class="p-button-text" pTooltip="Copy Password" (click)="copyPassword(entry.password)"></button>
+        <button pButton icon="pi pi-pencil" class="p-button-text" pTooltip="Edit Entry" (click)="showEntryEdit(entry)"></button>
+        <button pButton icon="pi pi-times" class="p-button-text" pTooltip="Delete Entry" (click)="deleteEntry(entry.id)"></button>
+
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Edit Task" [(visible)]="display" (onHide)="onDialogHide()" [draggable]="false" [style]="{'width': '20%', 'height': '50%'}">
+  <div class="p-field p-align-center vertical-container">
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4" >
+          <label for="title">Title</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.title"
+                 class="form-control"
+                 id="title"
+                 name="title"
+                 placeholder="Title"
+                 required #title="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="loginText">Login</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.loginText"
+                 class="form-control"
+                 id="loginText"
+                 name="loginText"
+                 placeholder="Login"
+                 required #content="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="password">Password</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.password"
+                 class="form-control"
+                 id="password"
+                 name="password"
+                 placeholder="Password"
+                 required #content="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-3">
+        <button pButton type="submit" [disabled]="checkEntryIsValid()"
+                (click)="editEntry(selectEntry)"
+                class="p-button-text">Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+</p-dialog>
+</div>

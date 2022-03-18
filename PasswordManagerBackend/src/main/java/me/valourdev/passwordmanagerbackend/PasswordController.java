@@ -24,4 +24,32 @@ public class PasswordController {
         passRepository.save(entry);
     }
 
+    @DeleteMapping("/api/v1/entries/{id}")
+    void deleteEntry(@PathVariable long id){
+        var entry = passRepository.findById(id);
+        if (entry.isPresent()){
+            passRepository.delete(entry.get());
+        } else {
+            System.out.println("Entry does not exist");
+        }
+    }
+
+    @PutMapping("/api/v1/entries")
+    void editEntry(@RequestBody Entry entry){
+        var currentEntry = passRepository.findById(entry.getId());
+        if(currentEntry.isPresent()){
+            currentEntry = java.util.Optional.of(
+                    new Entry(
+                            currentEntry.get().getId(),
+                            entry.getTitle(),
+                            entry.getLoginText(),
+                            entry.getPassword()
+                    )
+            );
+            passRepository.save(currentEntry.get());
+        } else {
+            System.out.println("Entry does not exist");
+        }
+    }
+
 }

@@ -14,7 +14,8 @@ public class Entry {
     private String loginText;
     private String password;
 
-    public Entry(String title ,String loginText, String password) {
+    public Entry(long id, String title ,String loginText, String password) {
+        this.id = id;
         this.title = title;
         this.loginText = loginText;
         this.password = password;
@@ -23,6 +24,15 @@ public class Entry {
     public Entry() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Task[id=%d, title='%s', loginText='%s', password='%s']",
+                id, title, loginText, password
+        );
+    }
+
 
     public long getId() {
         return id;
