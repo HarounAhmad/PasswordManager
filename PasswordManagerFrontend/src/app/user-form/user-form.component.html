@@ -12,12 +12,21 @@
             <label for="loginText">Login Text</label>
         </span>
     </div>
+
     <div class="field col-12 md:col-4" id="formInput3">
+        <span class="p-float-label">
+            <input type="text" id="url" pInputText [(ngModel)]="entry.url">
+            <label for="url">URL</label>
+        </span>
+    </div>
+
+    <div class="field col-12 md:col-4" id="formInput4">
         <span class="p-float-label">
             <input type="text" id="password" pInputText [(ngModel)]="entry.password">
             <label for="password">Password</label>
         </span>
     </div>
+
     <button pButton type="button" label="Submit" class="p-button-text"  (click)="onSubmit()" [disabled]="checkEntryIsValid()" ></button>
 
   </div>

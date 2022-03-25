@@ -1,6 +1,6 @@
 <div id="tableContainer">
 <p-table #dt1 [value]="entries" responsiveLayout="scroll" [rows]="7" [paginator]="true"
-[globalFilterFields]="['title', 'loginText']" id="table">
+[globalFilterFields]="['title', 'loginText', 'url']" id="table">
 
   <ng-template pTemplate="caption">
     <div class="flex">
@@ -23,6 +23,10 @@
         Login
         <p-columnFilter type="text" field="loginText" display="menu"></p-columnFilter>
       </th>
+      <th>
+        URL
+        <p-columnFilter type="text" field="url" display="menu"></p-columnFilter>
+      </th>
       <th>Password</th>
 
       <th></th>
@@ -33,6 +37,7 @@
     <tr>
       <td>{{entry.title}}</td>
       <td>{{entry.loginText}}</td>
+      <td><button pButton type="button" label="Link to {{entry.title}}" class="p-button-text" (click)="goToSite(entry)" pTooltip="{{entry.url}}"></button></td>
       <td>{{entry.password}}</td>
       <td>
         <button pButton icon="pi pi-copy" class="p-button-text" pTooltip="Copy Password" (click)="copyPassword(entry.password)"></button>
@@ -78,6 +83,25 @@
                  id="loginText"
                  name="loginText"
                  placeholder="Login"
+                 required #content="ngModel"
+                 [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="url">URL</label>
+        </div>
+        <div class="p-col-4">
+          <input type="text"
+                 pInputText
+                 [(ngModel)]="selectEntry.url"
+                 class="form-control"
+                 id="url"
+                 name="url"
+                 placeholder="URL"
                  required #content="ngModel"
                  [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
           >

@@ -12,12 +12,20 @@ public class Entry {
     private long id;
     private String title;
     private String loginText;
+    private String URL;
     private String password;
 
-    public Entry(long id, String title ,String loginText, String password) {
+    public Entry(
+                long id,
+                String title,
+                String loginText,
+                String url,
+                String password
+    ) {
         this.id = id;
         this.title = title;
         this.loginText = loginText;
+        this.URL = url;
         this.password = password;
     }
 
@@ -33,6 +41,13 @@ public class Entry {
         );
     }
 
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
 
     public long getId() {
         return id;
