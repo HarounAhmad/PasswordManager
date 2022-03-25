@@ -43,7 +43,8 @@ public class PasswordController {
                             currentEntry.get().getId(),
                             entry.getTitle(),
                             entry.getLoginText(),
-                            entry.getPassword()
+                            entry.getPassword(),
+                            entry.getURL()
                     )
             );
             passRepository.save(currentEntry.get());

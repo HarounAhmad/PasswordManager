@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {MenuItem} from "primeng/api";
 import {Table} from "primeng/table";
+import {stringify} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-entry-list',
@@ -34,7 +35,6 @@ export class EntryListComponent implements OnInit {
     this.entryService.findAll().subscribe(data => {
       this.entries = data;
     });
-
   }
 
   onDialogHide() {
@@ -77,5 +77,13 @@ export class EntryListComponent implements OnInit {
 
   clear(dt1: Table) {
     dt1.clear();
+  }
+
+  goToSite(entry: Entry) {
+    this.router.navigate(['entry.url'])
+    if(entry.url.startsWith("http://") || entry.url.startsWith("https://")) {
+      window.open(entry.url, '_blank')
+    } else { window.open('http://' + entry.url, '_blank') }
+
   }
 }
