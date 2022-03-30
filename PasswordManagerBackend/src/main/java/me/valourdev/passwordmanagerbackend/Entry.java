@@ -24,8 +24,6 @@ public class Entry {
     private String URL;
 
 
-    @Type(type="encryptedString")
-    private String URL;
 
     private String password;
 
