@@ -1,5 +1,7 @@
 package me.valourdev.passwordmanagerbackend;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,9 +12,21 @@ public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Type(type="encryptedString")
     private String title;
+
+    @Type(type="encryptedString")
     private String loginText;
+
+
+    @Type(type="encryptedString")
     private String URL;
+
+
+    @Type(type="encryptedString")
+    private String URL;
+
     private String password;
 
     public Entry(

@@ -37,6 +37,7 @@
     <tr>
       <td>{{entry.title}}</td>
       <td>{{entry.loginText}}</td>
+      <td><button pButton type="button" label="{{entry.title}}" class="p-button-text" (click)="goToSite(entry)" pTooltip="{{entry.url}}"></button></td>
       <td><button pButton type="button" label="Link to {{entry.title}}" class="p-button-text" (click)="goToSite(entry)" pTooltip="{{entry.url}}"></button></td>
       <td>{{entry.password}}</td>
       <td>
