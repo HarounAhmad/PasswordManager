@@ -19,11 +19,14 @@ public class Entry {
     @Type(type="encryptedString")
     private String loginText;
 
+
     @Type(type="encryptedString")
     private String URL;
 
 
     @Type(type="encryptedString")
+    private String URL;
+
     private String password;
 
     public Entry(

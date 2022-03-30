@@ -3,6 +3,11 @@ spring:
     url: jdbc:postgresql://minikube:31000/db
     username: user
     password: password
+
+    url: jdbc:postgresql://localhost:5433/db-postgres
+    username: db-postgres
+    password: asdf1234
+
   jpa:
     show-sql: true
     properties:
