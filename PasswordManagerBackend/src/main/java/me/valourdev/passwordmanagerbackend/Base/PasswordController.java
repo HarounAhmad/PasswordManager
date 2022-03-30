@@ -1,5 +1,7 @@
-package me.valourdev.passwordmanagerbackend;
+package me.valourdev.passwordmanagerbackend.Base;
 
+import me.valourdev.passwordmanagerbackend.Base.Entry;
+import me.valourdev.passwordmanagerbackend.Base.PassRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
