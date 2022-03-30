@@ -1,4 +1,4 @@
-package me.valourdev.passwordmanagerbackend;
+package me.valourdev.passwordmanagerbackend.encryption;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.hibernate5.encryptor.HibernatePBEEncryptorRegistry;
