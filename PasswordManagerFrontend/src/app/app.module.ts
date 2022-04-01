@@ -16,12 +16,14 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ClipboardModule} from "@angular/cdk/clipboard";
 import {TooltipModule} from "primeng/tooltip";
 import {PanelMenuModule} from "primeng/panelmenu";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EntryListComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
