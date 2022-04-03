@@ -16,8 +16,8 @@ public class BasicAuthConfiguration
             throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user")
-                .password("password")
+                .withUser("admin")
+                .password("admin")
                 .roles("USER");
     }
 
@@ -26,7 +26,7 @@ public class BasicAuthConfiguration
             throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/api/v1/auth/login/**", "/api/v1/entries").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

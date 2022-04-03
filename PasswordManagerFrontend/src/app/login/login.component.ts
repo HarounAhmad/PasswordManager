@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  private url: string = "localhost:8080/api/v1/auth/login";
+  private url: string = "http://localhost:8080/api/v1/auth/login";
 
   constructor(
     private route: ActivatedRoute,
@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     sessionStorage.setItem('token', '');
+    sessionStorage.setItem('loggedIn', 'false');
   }
 
   login() {
-    this.http.post<Observable<boolean>>(this.url, {
+    this.http.post<Observable<boolean>>(this.url + "/" + this.model.username + "/" + this.model.password, {
       userName: this.model.username,
       password: this.model.password
     }).subscribe(isValid => {
@@ -31,10 +32,14 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem(
           'token',
           btoa(this.model.username + ':' + this.model.password)
+
         );
-        this.router.navigate(['']);
+        sessionStorage.setItem('loggedIn', 'true');
+        this.router.navigate(['main']);
       } else {
         alert("Authentication failed.")
+        sessionStorage.setItem('loggedIn', 'false');
+
       }
     });
 

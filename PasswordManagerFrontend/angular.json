@@ -74,7 +74,9 @@
               "browserTarget": "PasswordManagerFrontend:build:production"
             },
             "development": {
-              "browserTarget": "PasswordManagerFrontend:build:development"
+              "browserTarget": "PasswordManagerFrontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
+
             }
           },
           "defaultConfiguration": "development"

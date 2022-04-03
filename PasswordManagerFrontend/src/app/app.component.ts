@@ -19,15 +19,5 @@ export class AppComponent {
   ) {
   }
 
-  goToEntries() {
-    this.router.navigate(['/entries'])
-  }
 
-  goToAddNewEntry() {
-    this.router.navigate(['/newEntry'])
-  }
-
-  goToHome() {
-    this.router.navigate(['/'])
-  }
 }
