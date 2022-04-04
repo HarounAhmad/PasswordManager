@@ -1,8 +1,8 @@
 package me.valourdev.passwordmanagerbackend.SpringSecurity;
 
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "users")

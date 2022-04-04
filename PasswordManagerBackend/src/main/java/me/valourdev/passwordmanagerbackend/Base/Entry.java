@@ -1,16 +1,21 @@
 package me.valourdev.passwordmanagerbackend.Base;
 
+import me.valourdev.passwordmanagerbackend.SpringSecurity.User;
 import org.hibernate.annotations.Type;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.servlet.http.HttpSession;
 
 @Entity
-@Table(name = "entries")
+@Table(name = "Entries")
 public class Entry {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -33,18 +38,25 @@ public class Entry {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "owner")
+    private long owner;
+
+
+
     public Entry(
                 long id,
                 String title,
                 String loginText,
                 String url,
-                String password
+                String password,
+                long owner
     ) {
         this.id = id;
         this.title = title;
         this.loginText = loginText;
         this.URL = url;
         this.password = password;
+        this.owner = owner;
     }
 
     public Entry() {
@@ -73,6 +85,14 @@ public class Entry {
 
     public String getTitle() {
         return title;
+    }
+
+    public long getUser_id() {
+        return owner;
+    }
+
+    public void setUser_id(long owner) {
+        this.owner = owner;
     }
 
     public void setTitle(String title) {

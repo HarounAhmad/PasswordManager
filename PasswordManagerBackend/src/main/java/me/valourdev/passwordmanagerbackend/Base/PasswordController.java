@@ -1,28 +1,32 @@
 package me.valourdev.passwordmanagerbackend.Base;
 
-import me.valourdev.passwordmanagerbackend.Base.Entry;
-import me.valourdev.passwordmanagerbackend.Base.PassRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 @CrossOrigin
 public class PasswordController {
+    @Autowired
+    private WebApplicationContext context;
 
     private final PassRepository passRepository;
-
     public PasswordController(PassRepository passRepository) {
         this.passRepository = passRepository;
     }
 
     @GetMapping("/api/v1/entries")
     public List<Entry> getEntries() {
-        return (List<Entry>) passRepository.findAll();
+        System.out.println("UserID: " + context.getServletContext().getAttribute("UserID"));
+        return passRepository.findByOwnership(Long.parseLong(context.getServletContext().getAttribute("UserID").toString()));
     }
 
     @PostMapping("/api/v1/entries")
     void AddEntry (@RequestBody Entry entry){
+        entry.setUser_id(Long.parseLong(context.getServletContext().getAttribute("UserID").toString()));
         passRepository.save(entry);
     }
 
@@ -46,7 +50,8 @@ public class PasswordController {
                             entry.getTitle(),
                             entry.getLoginText(),
                             entry.getPassword(),
-                            entry.getURL()
+                            entry.getURL(),
+                            entry.getUser_id()
                     )
             );
             passRepository.save(currentEntry.get());

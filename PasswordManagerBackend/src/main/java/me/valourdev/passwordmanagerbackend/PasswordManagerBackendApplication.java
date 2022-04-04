@@ -17,7 +17,7 @@ public class PasswordManagerBackendApplication {
         SpringApplication.run(PasswordManagerBackendApplication.class, args);
     }
 
-    @Bean
+  /*  @Bean
     CommandLineRunner init(UserRepository userRepository) {
         return args -> {
             Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
@@ -26,6 +26,6 @@ public class PasswordManagerBackendApplication {
             });
             userRepository.findAll().forEach(System.out::println);
         };
-    }
+    }*/
 
 }
