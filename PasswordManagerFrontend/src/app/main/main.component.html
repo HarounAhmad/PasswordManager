@@ -1,14 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="card bg-dark my-5">
+      <div class="card bg-dark my-5" id="wrapper">
         <div class="card-body">
-          <div>
-            <button pButton type="button" class="p-button-text" (click)="goToHome()"><h2 class="card-title text-center text-white py-3">PasswordManager</h2> </button>
+          <div id="nav">
+            <p-card header="" styleClass="p-card-shadow">
+              <button pButton type="button" class="p-button-text" (click)="goToHome()"><h2
+                class="card-title text-center text-white py-3">PasswordManager</h2></button>
+              <p><i class="pi pi-user"> {{username}}</i></p>
+              <ng-template pTemplate="footer">
+                <table>
+                  <tr>
+                    <td><p-button label="List Entries" icon="pi pi-list" styleClass="p-button-primary" [style]="{'margin-left': '.5em'}" (click)="goToEntries()"></p-button></td>
+                    <td><p-button label="New Entry" icon="pi pi-plus" styleClass="p-button-primary" [style]="{'margin-left': '.5em'}" (click)="goToAddNewEntry()"></p-button></td>
+                    <td><p-button label="Logout" icon="pi pi-lock" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}" (click)="logout()"></p-button></td>
+                  </tr>
+                </table>
+              </ng-template>
+            </p-card>
           </div>
 
-          <button pButton type="button" label="List Entries" class="p-button-text" (click)="goToEntries()"></button>
-          <button pButton type="button" label="New Entry" class="p-button-text" (click)="goToAddNewEntry()"></button>
         </div>
       </div>
       <router-outlet></router-outlet>

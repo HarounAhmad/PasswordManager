@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('loggedIn', 'false');
+    sessionStorage.setItem('username', '');
   }
 
   login() {
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
 
         );
         sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('username', this.model.username);
         this.router.navigate(['main']);
       } else {
         alert("Authentication failed.")

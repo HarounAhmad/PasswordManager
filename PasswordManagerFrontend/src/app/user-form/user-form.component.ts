@@ -25,7 +25,7 @@ export class UserFormComponent {
   }
 
   goToEntryList(){
-    this.router.navigate(['/entries'])
+    this.router.navigate(['/main/entries'])
   }
 
   checkEntryIsValid(){

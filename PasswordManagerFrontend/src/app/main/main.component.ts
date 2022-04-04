@@ -13,7 +13,10 @@ export class MainComponent implements OnInit {
     private router: Router,
   ) {
   }
+  username: any = sessionStorage.getItem('username');
+
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('username');
   }
   goToEntries() {
     this.router.navigate(['/main/entries'])
@@ -25,5 +28,11 @@ export class MainComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(['/main/'])
+  }
+
+
+  logout() {
+    sessionStorage.removeItem('username');
+    this.router.navigate(['/login'])
   }
 }
