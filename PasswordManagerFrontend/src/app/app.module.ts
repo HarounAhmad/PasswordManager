@@ -19,6 +19,7 @@ import {PanelMenuModule} from "primeng/panelmenu";
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import {PasswordModule} from "primeng/password";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {PasswordModule} from "primeng/password";
         TooltipModule,
         PanelMenuModule,
         PasswordModule,
+        CardModule,
     ],
   providers: [EntryService],
   bootstrap: [AppComponent]

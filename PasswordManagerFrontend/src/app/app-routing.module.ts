@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {EntryListComponent} from "./entry-list/entry-list.component";
 import {UserFormComponent} from "./user-form/user-form.component";
-import {LoginComponent} from "./login/login.component";
 import {MainComponent} from "./main/main.component";
 import {AuthGuardGuard} from "./auth-guard.guard";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
 
