@@ -16,27 +16,33 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ClipboardModule} from "@angular/cdk/clipboard";
 import {TooltipModule} from "primeng/tooltip";
 import {PanelMenuModule} from "primeng/panelmenu";
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+import {PasswordModule} from "primeng/password";
 
 @NgModule({
   declarations: [
     AppComponent,
     EntryListComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginComponent,
+    MainComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ButtonModule,
-    InputTextModule,
-    TableModule,
-    DialogModule,
-    BrowserAnimationsModule,
-    ClipboardModule,
-    TooltipModule,
-    PanelMenuModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ButtonModule,
+        InputTextModule,
+        TableModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        ClipboardModule,
+        TooltipModule,
+        PanelMenuModule,
+        PasswordModule,
+    ],
   providers: [EntryService],
   bootstrap: [AppComponent]
 })
