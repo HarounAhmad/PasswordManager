@@ -8,7 +8,7 @@ export class EntryService {
   private entriesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.entriesUrl = 'http://localhost:8080/api/v1/entries'
+    this.entriesUrl = 'http://localhost:8080/api/v1/app/entries'
   }
 
   public findAll(): Observable<Entry[]> {
