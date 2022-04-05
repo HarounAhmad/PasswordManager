@@ -18,19 +18,19 @@ public class PasswordController {
         this.passRepository = passRepository;
     }
 
-    @GetMapping("/api/v1/entries")
+    @GetMapping("/api/v1/app/entries")
     public List<Entry> getEntries() {
         System.out.println("UserID: " + context.getServletContext().getAttribute("UserID"));
         return passRepository.findByOwnership(Long.parseLong(context.getServletContext().getAttribute("UserID").toString()));
     }
 
-    @PostMapping("/api/v1/entries")
+    @PostMapping("/api/v1/app/entries")
     void AddEntry (@RequestBody Entry entry){
         entry.setUser_id(Long.parseLong(context.getServletContext().getAttribute("UserID").toString()));
         passRepository.save(entry);
     }
 
-    @DeleteMapping("/api/v1/entries/{id}")
+    @DeleteMapping("/api/v1/app/entries/{id}")
     void deleteEntry(@PathVariable long id){
         var entry = passRepository.findById(id);
         if (entry.isPresent()){
@@ -40,7 +40,7 @@ public class PasswordController {
         }
     }
 
-    @PutMapping("/api/v1/entries")
+    @PutMapping("/api/v1/app/entries")
     void editEntry(@RequestBody Entry entry){
         var currentEntry = passRepository.findById(entry.getId());
         if(currentEntry.isPresent()){
