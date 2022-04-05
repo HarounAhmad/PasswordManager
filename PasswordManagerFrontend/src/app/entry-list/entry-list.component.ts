@@ -39,7 +39,7 @@ export class EntryListComponent implements OnInit {
 
   onDialogHide() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/entries'])
+      this.router.navigate(['/main/entries'])
     });
 
   }
@@ -52,7 +52,7 @@ export class EntryListComponent implements OnInit {
     this.entryService.delete(id).subscribe(data => {
       console.log(data)
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
-        this.router.navigate(['/entries'])
+        this.router.navigate(['/main/entries'])
       })
     })
   }
