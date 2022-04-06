@@ -11,7 +11,7 @@ import {AppServiceService} from "../app-service.service";
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  private url: string = "http://localhost:8080/api/v1/auth/login";
+  private url: string = "http://minikube:31500/api/v1/auth/login";
 
   constructor(
     private route: ActivatedRoute,
