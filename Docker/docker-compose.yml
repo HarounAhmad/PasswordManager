@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    ports:
+      - "5433:5432"
+    container_name: db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: db-postgres
+      POSTGRES_PASSWORD: asdf1234
+      POSTGRES_DB: db-postgres
