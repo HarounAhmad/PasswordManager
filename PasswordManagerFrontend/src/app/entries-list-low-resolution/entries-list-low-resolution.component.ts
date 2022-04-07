@@ -3,6 +3,7 @@ import {Entry} from "../entry";
 import {EntryService} from "../entry.service";
 import {Router} from "@angular/router";
 import {Table} from "primeng/table";
+import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-entries-list-low-resolution',
@@ -17,6 +18,9 @@ export class EntriesListLowResolutionComponent implements OnInit {
   selectEntry: Entry = new Entry();
   innerWidth: any;
 
+  SaveButtonText: string = "";
+  CancelButtonText: string = "";
+  DeleteButtonText: string = "";
 
   constructor(
     private entryService: EntryService,
@@ -40,7 +44,6 @@ export class EntriesListLowResolutionComponent implements OnInit {
     });
 
   }
-
 
 
 
@@ -76,14 +79,28 @@ export class EntriesListLowResolutionComponent implements OnInit {
     dt1.clear();
   }
 
+
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 900) {
       this.router.navigate(['/main/entrieslowres'])
+
     } else {
       this.router.navigate(['/main/entries'])
     }
+
+    if(this.innerWidth < 500) {
+      this.SaveButtonText = "";
+      this.CancelButtonText = "";
+      this.DeleteButtonText = "";
+    } else {
+      this.SaveButtonText = "Save";
+      this.CancelButtonText = "Cancel";
+      this.DeleteButtonText = "Delete";
+    }
+
   }
 
 
