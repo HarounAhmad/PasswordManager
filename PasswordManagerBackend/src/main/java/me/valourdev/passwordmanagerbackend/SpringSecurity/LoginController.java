@@ -37,14 +37,16 @@ public class LoginController {
         users.forEach(user -> {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 context.getServletContext().setAttribute("UserID", user.getId());
-                System.out.println("UserID: " + context.getServletContext().getAttribute("UserID"));
                 isValid = true;
             }
         });
-        System.out.println(isValid);
         return isValid;
     }
 
+    @RequestMapping("/api/v1/auth/logout")
+    public void logout() {
+        context.getServletContext().setAttribute("UserID", null);
+    }
     @RequestMapping("/api/v1/auth/user")
     public Principal user(HttpServletRequest request) {
         String authToken = request.getHeader("Authorization")
