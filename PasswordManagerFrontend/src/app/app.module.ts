@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import {PasswordModule} from "primeng/password";
 import {CardModule} from "primeng/card";
+import { EntriesListLowResolutionComponent } from './entries-list-low-resolution/entries-list-low-resolution.component';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {CardModule} from "primeng/card";
     EntryListComponent,
     UserFormComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    EntriesListLowResolutionComponent,
   ],
     imports: [
         BrowserModule,
@@ -44,6 +47,7 @@ import {CardModule} from "primeng/card";
         PanelMenuModule,
         PasswordModule,
         CardModule,
+        RippleModule,
     ],
   providers: [EntryService],
   bootstrap: [AppComponent]

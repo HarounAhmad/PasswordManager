@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -13,11 +13,19 @@ export class MainComponent implements OnInit {
     private router: Router,
   ) {
   }
+
+  listEntriesButtonText: string = 'List Entries';
+  addEntryButtonText: string = 'Add Entry';
+  logoutButtonText: string = 'Logout';
+
+
   username: any = sessionStorage.getItem('username');
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.ResizeComponent();
   }
+
   goToEntries() {
     this.router.navigate(['/main/entries'])
   }
@@ -35,4 +43,23 @@ export class MainComponent implements OnInit {
     sessionStorage.removeItem('username');
     this.router.navigate(['/login'])
   }
+
+  ResizeComponent(){
+    if (window.innerWidth < 900) {
+      this.listEntriesButtonText = '';
+      this.addEntryButtonText = '';
+      this.logoutButtonText = '';
+    } else {
+      this.listEntriesButtonText = 'List Entries';
+      this.addEntryButtonText = 'Add Entry';
+      this.logoutButtonText = 'Logout';
+    }
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.ResizeComponent();
+  }
+
 }

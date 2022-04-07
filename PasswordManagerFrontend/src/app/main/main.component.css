@@ -1,20 +1,32 @@
-#wrapper {
-  margin: auto;
-  width: 50%;
-  text-align: center;
-  padding: 10px;
+#container {
+  padding: 1rem;
 }
 
 
 
+p{
+  margin-left: 1rem;
+}
+
+#wrapper{
+  margin-left: 1rem;
+}
+
+#router {
+  margin-left: 1rem;
+}
 
 p-card {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+  display: inline-block;
+  margin-right: 1rem;
+  position: relative;
 }
 
-table{
-  width: 100%;
+
+#homeButton{
+  font-size: 1.5em;
+}
+
+p-button{
+  width: 2rem;
 }
