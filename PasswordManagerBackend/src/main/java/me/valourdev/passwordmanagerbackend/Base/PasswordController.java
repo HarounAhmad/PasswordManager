@@ -49,8 +49,8 @@ public class PasswordController {
                             currentEntry.get().getId(),
                             entry.getTitle(),
                             entry.getLoginText(),
-                            entry.getPassword(),
                             entry.getURL(),
+                            entry.getPassword(),
                             entry.getUser_id()
                     )
             );
