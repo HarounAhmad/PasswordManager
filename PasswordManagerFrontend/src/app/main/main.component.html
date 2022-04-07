@@ -1,28 +1,30 @@
-<div class="container">
+<div class="container" id="container">
   <div class="row">
     <div class="col-md-12">
       <div class="card bg-dark my-5" id="wrapper">
-        <div class="card-body">
-          <div id="nav">
-            <p-card header="" styleClass="p-card-shadow">
-              <button pButton type="button" class="p-button-text" (click)="goToHome()"><h2
-                class="card-title text-center text-white py-3">PasswordManager</h2></button>
-              <p><i class="pi pi-user"> {{username}}</i></p>
-              <ng-template pTemplate="footer">
-                <table>
-                  <tr>
-                    <td><p-button label="List Entries" icon="pi pi-list" styleClass="p-button-primary" [style]="{'margin-left': '.5em'}" (click)="goToEntries()"></p-button></td>
-                    <td><p-button label="New Entry" icon="pi pi-plus" styleClass="p-button-primary" [style]="{'margin-left': '.5em'}" (click)="goToAddNewEntry()"></p-button></td>
-                    <td><p-button label="Logout" icon="pi pi-lock" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}" (click)="logout()"></p-button></td>
-                  </tr>
-                </table>
-              </ng-template>
-            </p-card>
-          </div>
+        <p-card header="" styleClass="p-card-shadow">
+          <button pButton type="button" class="p-button-text" (click)="goToHome()" label="PasswordManager"
+                  id="homeButton"></button>
+          <p>
+            <i class="pi pi-user"> {{username}}</i>
+          </p>
+          <ng-template pTemplate="footer">
 
-        </div>
+            <p-button label="{{listEntriesButtonText}}" icon="pi pi-list" styleClass="p-button-primary"
+                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="goToEntries()"></p-button>
+            <p-button label="{{addEntryButtonText}}" icon="pi pi-plus" styleClass="p-button-primary"
+                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="goToAddNewEntry()"></p-button>
+            <p-button label="{{logoutButtonText}}" icon="pi pi-lock" styleClass="p-button-secondary"
+                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="logout()"></p-button>
+
+          </ng-template>
+
+        </p-card>
       </div>
-      <router-outlet></router-outlet>
+
     </div>
   </div>
+</div>
+<div id="router">
+  <router-outlet></router-outlet>
 </div>

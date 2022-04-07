@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {AppServiceService} from "../app-service.service";
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem(
           'token',
           btoa(this.model.username + ':' + this.model.password)
-
         );
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('username', this.model.username);

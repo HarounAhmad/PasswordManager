@@ -1,8 +1,23 @@
-#AddEntryFormContainer{
-  margin: auto;
-  width: 30%;
+#container {
+  margin-left: 1rem;
+  padding: 1rem;
+}
 
-  padding: 10px;
+#wrapper{
+  display: inline;
+  width: 2rem;
+}
+
+p-card {
+  display: inline-block;
+  margin-right: 1rem;
+  position: relative;
+}
+
+
+
+p-button{
+  width: 100%;
 }
 
 #formInput1 {

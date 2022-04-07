@@ -5,6 +5,8 @@ import {UserFormComponent} from "./user-form/user-form.component";
 import {MainComponent} from "./main/main.component";
 import {AuthGuardGuard} from "./auth-guard.guard";
 import {LoginComponent} from "./login/login.component";
+import {LowResolutionGuard} from "./low-resolution.guard";
+import {EntriesListLowResolutionComponent} from "./entries-list-low-resolution/entries-list-low-resolution.component";
 
 const routes: Routes = [
 
@@ -14,7 +16,8 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard],
 
     children: [
-      { path: 'entries', component: EntryListComponent},
+      { path: 'entries', component: EntryListComponent, canActivate: [LowResolutionGuard]},
+      { path: 'entrieslowres', component: EntriesListLowResolutionComponent},
       { path: 'newEntry', component: UserFormComponent},
 
     ]

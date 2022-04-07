@@ -1,23 +1,4 @@
-#cont{
-  width:auto;
-  text-align:center;
-  margin: auto;
-  padding: 10px;
-}
 
-#LoginContainer{
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-
-}
-
-p-card {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
 
 #formInput1{
   margin-bottom: 1rem;
