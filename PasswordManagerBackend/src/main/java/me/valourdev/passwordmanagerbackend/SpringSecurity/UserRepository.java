@@ -9,4 +9,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query(value = "SELECT * FROM users WHERE username = ?1", nativeQuery = true)
     User findByUsername(String username);
+
 }

@@ -6,6 +6,7 @@ import {AuthGuardGuard} from "./auth-guard.guard";
 import {LoginComponent} from "./login/login.component";
 import {LowResolutionGuard} from "./low-resolution.guard";
 import {EntriesListLowResolutionComponent} from "./entries-list-low-resolution/entries-list-low-resolution.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 
