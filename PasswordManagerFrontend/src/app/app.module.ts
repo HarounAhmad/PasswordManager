@@ -23,6 +23,7 @@ import { EntriesListLowResolutionComponent } from './entries-list-low-resolution
 import {RippleModule} from "primeng/ripple";
 import {AppServiceService} from "./app-service.service";
 import {MessagesModule} from "primeng/messages";
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {MessagesModule} from "primeng/messages";
     LoginComponent,
     MainComponent,
     EntriesListLowResolutionComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

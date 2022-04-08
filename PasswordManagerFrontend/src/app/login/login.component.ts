@@ -65,4 +65,8 @@ export class LoginComponent implements OnInit {
   checkEntryIsValid(): boolean {
     return (this.model.username == null || this.model.password == null);
   }
+
+  SignUp() {
+    this.router.navigate(['signup']);
+  }
 }
