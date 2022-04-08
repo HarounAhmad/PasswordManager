@@ -21,11 +21,14 @@ export class EntriesListLowResolutionComponent implements OnInit {
   SaveButtonText: string = "";
   CancelButtonText: string = "";
   DeleteButtonText: string = "";
+  displayNewEntryDialog: boolean = false;
+  entry: Entry;
 
   constructor(
     private entryService: EntryService,
     private router: Router,
   ) {
+    this.entry = new Entry();
   }
 
   ngOnInit(): void {
@@ -50,7 +53,6 @@ export class EntriesListLowResolutionComponent implements OnInit {
 
   deleteEntry(id: number) {
     this.entryService.delete(id).subscribe(data => {
-      console.log(data)
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
         this.router.navigate(['/main/entries'])
       })
@@ -58,7 +60,7 @@ export class EntriesListLowResolutionComponent implements OnInit {
   }
 
   editEntry(selectEntry: Entry) {
-    this.entryService.edit(selectEntry).subscribe(data => console.log(selectEntry.id + "\n" + data))
+    this.entryService.edit(selectEntry).subscribe()
     this.display = false
   }
 
@@ -115,4 +117,20 @@ export class EntriesListLowResolutionComponent implements OnInit {
   cancelEdit() {
     this.onDialogHide();
   }
+
+
+  showNewEntryDialog() {
+    this.displayNewEntryDialog = true;
+  }
+
+  newEntry() {
+    this.entryService.save(this.entry).subscribe()
+    this.entry = new Entry();
+    this.onDialogHide();
+  }
+  checkNewEntryIsValid() {
+    return !(this.entry.title.length > 0 && this.entry.password.length > 0 && this.entry.loginText.length > 0)
+  }
+
+
 }

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AppServiceService} from "../app-service.service";
+import {Message} from "primeng/api";
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,15 @@ import {AppServiceService} from "../app-service.service";
 export class LoginComponent implements OnInit {
   model: any = {};
   private url: string = "http://localhost:8080/api/v1/auth/login";
+  msgs: Message[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient
-  ) { }
+  ) {
+    this.msgs = [];
+  }
 
   ngOnInit() {
     sessionStorage.setItem('token', '');
@@ -39,7 +43,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('username', this.model.username);
         this.router.navigate(['main']);
       } else {
-        alert("Authentication failed.")
+        this.showLoginFailed();
         sessionStorage.setItem('loggedIn', 'false');
 
       }
@@ -47,6 +51,14 @@ export class LoginComponent implements OnInit {
 
   }
 
+  showLoginFailed(){
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Login Failed', detail:'Username or password is incorrect'});
+  }
+
+  hideLoginFailed(){
+    this.msgs = [];
+  }
 
 
 

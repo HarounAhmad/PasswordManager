@@ -13,8 +13,8 @@
             <input pInputText type="text" (input)="dt1.filterGlobal(($any($event.target).value), 'contains')"
                    placeholder="Search keyword"/>
         </span>
-
-
+        <button pButton label="Add Entry" icon="pi pi-plus" styleClass="p-button-primary"
+                [style]="{'float': 'right'}"  (click)="displayNewEntryDialog = true" pRipple></button>
       </div>
     </ng-template>
 
@@ -50,7 +50,7 @@
         <td>{{entry.password}}</td>
         <td>
           <button pButton icon="pi pi-copy" class="p-button-text" pTooltip="Copy Password"
-                  (click)="copyPassword(entry.password)"></button>
+                  (click)="copyText(entry.password)"></button>
           <button pButton icon="pi pi-pencil" class="p-button-text" pTooltip="Edit Entry"
                   (click)="showEntryEdit(entry)"></button>
           <button pButton icon="pi pi-trash" class="p-button-text" pTooltip="Delete Entry"
@@ -61,8 +61,8 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="Edit Task" [(visible)]="display" (onHide)="onDialogHide()" [draggable]="false"
-            [style]="{'width': '20%', 'height': '50%'}">
+  <p-dialog header="Edit Entry" [(visible)]="display" [closable]="false" (onHide)="onDialogHide()" [draggable]="false"
+            [style]="{'width': '30rem', 'height': '50%'}">
     <div class="p-field p-align-center vertical-container">
       <div class="p-field p-grid">
         <div class="p-col-6">
@@ -70,16 +70,20 @@
             <label for="title">Title</label>
           </div>
           <div class="p-col-4">
-            <input type="text"
-                   pInputText
-                   [(ngModel)]="selectEntry.title"
-                   class="form-control"
-                   id="title"
-                   name="title"
-                   placeholder="Title"
-                   required #title="ngModel"
-                   [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
-            >
+            <div class="p-inputgroup">
+
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="selectEntry.title"
+                     class="form-control"
+                     id="title"
+                     name="title"
+                     placeholder="Title"
+                     required #title="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              > <button pButton icon="pi pi-copy" pTooltip="Copy Title"
+                        (click)="copyText(selectEntry.title)" [style]="{width:'2rem', 'margin-bottom': '6%', 'margin-top': '3%' }"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -89,16 +93,20 @@
             <label for="loginText">Login</label>
           </div>
           <div class="p-col-4">
-            <input type="text"
-                   pInputText
-                   [(ngModel)]="selectEntry.loginText"
-                   class="form-control"
-                   id="loginText"
-                   name="loginText"
-                   placeholder="Login"
-                   required #content="ngModel"
-                   [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
-            >
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="selectEntry.loginText"
+                     class="form-control"
+                     id="loginText"
+                     name="loginText"
+                     placeholder="Login"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              >
+              <button pButton icon="pi pi-copy" pTooltip="Copy Login Text"
+                      (click)="copyText(selectEntry.loginText)" [style]="{width:'2rem', 'margin-bottom': '6%', 'margin-top': '3%' }"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -108,16 +116,19 @@
             <label for="url">URL</label>
           </div>
           <div class="p-col-4">
-            <input type="text"
-                   pInputText
-                   [(ngModel)]="selectEntry.url"
-                   class="form-control"
-                   id="url"
-                   name="url"
-                   placeholder="URL"
-                   required #content="ngModel"
-                   [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
-            >
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="selectEntry.url"
+                     class="form-control"
+                     id="url"
+                     name="url"
+                     placeholder="URL"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              > <button pButton icon="pi pi-copy" pTooltip="Copy URL"
+                        (click)="copyText(selectEntry.url)" [style]="{width:'2rem', 'margin-bottom': '6%', 'margin-top': '3%' }"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -127,25 +138,165 @@
             <label for="password">Password</label>
           </div>
           <div class="p-col-4">
-            <input type="text"
-                   pInputText
-                   [(ngModel)]="selectEntry.password"
-                   class="form-control"
-                   id="password"
-                   name="password"
-                   placeholder="Password"
-                   required #content="ngModel"
-                   [style]="{width:'100%', 'margin-bottom': '6%', 'margin-top': '3%' }"
-            >
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="selectEntry.password"
+                     class="form-control"
+                     id="password"
+                     name="password"
+                     placeholder="Password"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              > <button pButton icon="pi pi-copy" pTooltip="Copy Password"
+                        (click)="copyText(selectEntry.password)" [style]="{width:'2rem', 'margin-bottom': '6%', 'margin-top': '3%' }"></button>
+            </div>
           </div>
         </div>
       </div>
       <div class="p-grid">
         <div class="p-col-3">
-          <button pButton type="submit" [disabled]="checkEntryIsValid()"
-                  (click)="editEntry(selectEntry)"
-                  class="p-button-text">Submit
-          </button>
+          <p-button
+            label="{{SaveButtonText}}"
+            icon="pi pi-check"
+            styleClass="p-button-primary"
+            (click)="editEntry(selectEntry)"
+            [disabled]="checkEntryIsValid()"
+            [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' , 'margin-right': '0.5rem', 'margin-left': '1rem' }"
+            pRipple
+          ></p-button>
+          <p-button
+            label="{{CancelButtonText}}"
+            icon="pi pi-times"
+            styleClass="p-button-secondary"
+            (click)="cancelEdit()"
+            [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            pRipple >
+
+          </p-button>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </p-dialog>
+
+
+
+  <p-dialog header="New Entry" [(visible)]="displayNewEntryDialog" [closable]="false" (onHide)="onDialogHide()" [draggable]="false"
+            [style]="{'width': '30rem', 'height': '50%'}">
+    <div class="p-field p-align-center vertical-container">
+      <div class="p-field p-grid">
+        <div class="p-col-6">
+          <div class="p-col-4">
+            <label for="title">Title</label>
+          </div>
+          <div class="p-col-4">
+            <div class="p-inputgroup">
+
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="entry.title"
+                     class="form-control"
+                     id="newtitle"
+                     name="newtitle"
+                     placeholder="Title"
+                     required #title="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col-6">
+          <div class="p-col-4">
+            <label for="loginText">Login</label>
+          </div>
+          <div class="p-col-4">
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="entry.loginText"
+                     class="form-control"
+                     id="newloginText"
+                     name="newloginText"
+                     placeholder="Login"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              >
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col-6">
+          <div class="p-col-4">
+            <label for="url">URL</label>
+          </div>
+          <div class="p-col-4">
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="entry.url"
+                     class="form-control"
+                     id="newurl"
+                     name="newurl"
+                     placeholder="URL"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col-6">
+          <div class="p-col-4">
+            <label for="password">Password</label>
+          </div>
+          <div class="p-col-4">
+            <div class="p-inputgroup">
+              <input type="text"
+                     pInputText
+                     [(ngModel)]="entry.password"
+                     class="form-control"
+                     id="newpassword"
+                     name="newpassword"
+                     placeholder="Password"
+                     required #content="ngModel"
+                     [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-3">
+          <p-button
+            label="{{SaveButtonText}}"
+            icon="pi pi-check"
+            styleClass="p-button-primary"
+            (click)="newEntry()"
+            [disabled]="checkNewEntryIsValid()"
+            [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' , 'margin-right': '0.5rem', 'margin-left': '1rem' }"
+            pRipple
+          ></p-button>
+          <p-button
+            label="Cancel"
+            icon="pi pi-times"
+            styleClass="p-button-secondary"
+            (click)="cancelEdit()"
+            [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            pRipple >
+
+          </p-button>
+
+
+
         </div>
       </div>
     </div>

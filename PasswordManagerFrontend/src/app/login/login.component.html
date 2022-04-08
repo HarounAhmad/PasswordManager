@@ -18,6 +18,9 @@
       <ng-template pTemplate="footer">
         <p-button label="Login" icon="pi pi-lock-open" (onClick)="login()" [disabled]="checkEntryIsValid()"></p-button>
       </ng-template>
+
+      <p-messages [(value)]="msgs"></p-messages>
+
     </p-card>
 
   </div>
