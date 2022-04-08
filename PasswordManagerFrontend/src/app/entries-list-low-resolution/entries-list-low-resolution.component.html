@@ -6,14 +6,16 @@
 
   <ng-template pTemplate="caption">
     <div class="flex" id="searchContainer">
+      <div class="p-inputgroup">
 
       <span class="p-input-icon-left ml-auto" [style]="{'width': '100%'}">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="dt2.filterGlobal(($any($event.target).value), 'contains')"
                    placeholder="Search keyword" [style]="{'width': '100%'}"/>
         </span>
-
-
+        <button pButton icon="pi pi-plus" pTooltip="New Entry"
+                (click)="showNewEntryDialog()" [style]="{width:'5rem'}"></button>
+      </div>
     </div>
   </ng-template>
 
@@ -29,7 +31,7 @@
     </tr>
   </ng-template>
 </p-table>
-<p-dialog header="Edit Task" [(visible)]="display" (onHide)="onDialogHide()" [draggable]="false"
+<p-dialog header="Edit Entry" #pd1 [(visible)]="display" [closable]="false" (onShow)="pd1.maximize()" [draggable]="false"
           [style]="{'width': '100%', 'height': '100%'}">
   <div class="p-field p-align-center vertical-container">
     <div class="p-field p-grid">
@@ -125,21 +127,149 @@
     <div class="p-grid">
       <div class="p-col-3">
         <p-button
-          label="Save"
+          label="{{SaveButtonText}}"
           icon="pi pi-check"
           styleClass="p-button-primary"
           (click)="editEntry(selectEntry)"
           [disabled]="checkEntryIsValid()"
-          [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' , 'margin-right': '3%', 'margin-left': '1rem' }"
+          [style]="{width:'30%', 'margin-bottom': '6%', 'margin-top': '3%' , 'margin-right': '3%', 'margin-left': '1rem' }"
+        ></p-button>
+        <p-button
+          label="{{CancelButtonText}}"
+          icon="pi pi-times"
+          styleClass="p-button-secondary"
+          (click)="cancelEdit()"
+          [style]="{width:'30%', 'margin-bottom': '6%', 'margin-top': '3%' }">
+
+        </p-button>
+
+        <p-button
+          label="{{DeleteButtonText}}"
+          icon="pi pi-trash"
+          styleClass="p-button-secondary"
+          (click)="deleteEntry(+selectEntry.id)"
+          [style]="{width:'30%', 'margin-bottom': '6%', 'margin-top': '3%', 'margin-left': '3%' }">
+
+        </p-button>
+
+      </div>
+    </div>
+  </div>
+
+</p-dialog>
+
+
+<p-dialog header="New Entry" #pd2 [(visible)]="displayNewEntryDialog" [closable]="false" (onShow)="pd2.maximize()" [draggable]="false"
+          [style]="{'width': '100%', 'height': '100%'}">
+  <div class="p-field p-align-center vertical-container">
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="title">Title</label>
+        </div>
+        <div class="p-col-4">
+          <div class="p-inputgroup">
+
+            <input type="text"
+                   pInputText
+                   [(ngModel)]="entry.title"
+                   class="form-control"
+                   id="newtitle"
+                   name="newtitle"
+                   placeholder="Title"
+                   required #title="ngModel"
+                   [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="loginText">Login</label>
+        </div>
+        <div class="p-col-4">
+          <div class="p-inputgroup">
+            <input type="text"
+                   pInputText
+                   [(ngModel)]="entry.loginText"
+                   class="form-control"
+                   id="newloginText"
+                   name="newloginText"
+                   placeholder="Login"
+                   required #content="ngModel"
+                   [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            >
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="url">URL</label>
+        </div>
+        <div class="p-col-4">
+          <div class="p-inputgroup">
+            <input type="text"
+                   pInputText
+                   [(ngModel)]="entry.url"
+                   class="form-control"
+                   id="newurl"
+                   name="newurl"
+                   placeholder="URL"
+                   required #content="ngModel"
+                   [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col-6">
+        <div class="p-col-4">
+          <label for="password">Password</label>
+        </div>
+        <div class="p-col-4">
+          <div class="p-inputgroup">
+            <input type="text"
+                   pInputText
+                   [(ngModel)]="entry.password"
+                   class="form-control"
+                   id="newpassword"
+                   name="newpassword"
+                   placeholder="Password"
+                   required #content="ngModel"
+                   [style]="{width:'80%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-3">
+        <p-button
+          label="{{SaveButtonText}}"
+          icon="pi pi-check"
+          styleClass="p-button-primary"
+          (click)="newEntry()"
+          [disabled]="checkNewEntryIsValid()"
+          [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' , 'margin-right': '0.5rem', 'margin-left': '1rem' }"
+          pRipple
         ></p-button>
         <p-button
           label="Cancel"
           icon="pi pi-times"
           styleClass="p-button-secondary"
           (click)="cancelEdit()"
-          [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' }">
+          [style]="{width:'45%', 'margin-bottom': '6%', 'margin-top': '3%' }"
+          pRipple >
 
         </p-button>
+
+
 
       </div>
     </div>

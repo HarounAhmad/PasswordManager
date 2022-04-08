@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {EntryService} from "./entry.service";
@@ -22,34 +21,36 @@ import {PasswordModule} from "primeng/password";
 import {CardModule} from "primeng/card";
 import { EntriesListLowResolutionComponent } from './entries-list-low-resolution/entries-list-low-resolution.component';
 import {RippleModule} from "primeng/ripple";
+import {AppServiceService} from "./app-service.service";
+import {MessagesModule} from "primeng/messages";
 
 @NgModule({
   declarations: [
     AppComponent,
     EntryListComponent,
-    UserFormComponent,
     LoginComponent,
     MainComponent,
     EntriesListLowResolutionComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ButtonModule,
-        InputTextModule,
-        TableModule,
-        DialogModule,
-        BrowserAnimationsModule,
-        ClipboardModule,
-        TooltipModule,
-        PanelMenuModule,
-        PasswordModule,
-        CardModule,
-        RippleModule,
-    ],
-  providers: [EntryService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    ClipboardModule,
+    TooltipModule,
+    PanelMenuModule,
+    PasswordModule,
+    CardModule,
+    RippleModule,
+    MessagesModule,
+  ],
+  providers: [EntryService, AppServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

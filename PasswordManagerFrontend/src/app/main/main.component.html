@@ -11,11 +11,10 @@
           <ng-template pTemplate="footer">
 
             <p-button label="{{listEntriesButtonText}}" icon="pi pi-list" styleClass="p-button-primary"
-                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="goToEntries()"></p-button>
-            <p-button label="{{addEntryButtonText}}" icon="pi pi-plus" styleClass="p-button-primary"
-                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="goToAddNewEntry()"></p-button>
+                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="goToEntries()" pRipple></p-button>
+
             <p-button label="{{logoutButtonText}}" icon="pi pi-lock" styleClass="p-button-secondary"
-                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="logout()"></p-button>
+                      [style]="{'margin-left': '.5em', 'margin-bottom': '.5em'}" (click)="logout()" pRipple></p-button>
 
           </ng-template>
 

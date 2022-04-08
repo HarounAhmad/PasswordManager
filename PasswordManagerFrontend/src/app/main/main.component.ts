@@ -33,9 +33,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/main/entries'])
   }
 
-  goToAddNewEntry() {
-    this.router.navigate(['/main/newEntry'])
-  }
+
 
   goToHome() {
     this.router.navigate(['/main/'])

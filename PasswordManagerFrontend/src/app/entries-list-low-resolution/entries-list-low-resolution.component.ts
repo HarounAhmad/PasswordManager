@@ -3,6 +3,7 @@ import {Entry} from "../entry";
 import {EntryService} from "../entry.service";
 import {Router} from "@angular/router";
 import {Table} from "primeng/table";
+import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-entries-list-low-resolution',
@@ -17,11 +18,17 @@ export class EntriesListLowResolutionComponent implements OnInit {
   selectEntry: Entry = new Entry();
   innerWidth: any;
 
+  SaveButtonText: string = "";
+  CancelButtonText: string = "";
+  DeleteButtonText: string = "";
+  displayNewEntryDialog: boolean = false;
+  entry: Entry;
 
   constructor(
     private entryService: EntryService,
     private router: Router,
   ) {
+    this.entry = new Entry();
   }
 
   ngOnInit(): void {
@@ -44,10 +51,8 @@ export class EntriesListLowResolutionComponent implements OnInit {
 
 
 
-
   deleteEntry(id: number) {
     this.entryService.delete(id).subscribe(data => {
-      console.log(data)
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
         this.router.navigate(['/main/entries'])
       })
@@ -55,7 +60,7 @@ export class EntriesListLowResolutionComponent implements OnInit {
   }
 
   editEntry(selectEntry: Entry) {
-    this.entryService.edit(selectEntry).subscribe(data => console.log(selectEntry.id + "\n" + data))
+    this.entryService.edit(selectEntry).subscribe()
     this.display = false
   }
 
@@ -76,14 +81,28 @@ export class EntriesListLowResolutionComponent implements OnInit {
     dt1.clear();
   }
 
+
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.innerWidth = window.innerWidth;
     if(this.innerWidth < 900) {
       this.router.navigate(['/main/entrieslowres'])
+
     } else {
       this.router.navigate(['/main/entries'])
     }
+
+    if(this.innerWidth < 500) {
+      this.SaveButtonText = "";
+      this.CancelButtonText = "";
+      this.DeleteButtonText = "";
+    } else {
+      this.SaveButtonText = "Save";
+      this.CancelButtonText = "Cancel";
+      this.DeleteButtonText = "Delete";
+    }
+
   }
 
 
@@ -98,4 +117,20 @@ export class EntriesListLowResolutionComponent implements OnInit {
   cancelEdit() {
     this.onDialogHide();
   }
+
+
+  showNewEntryDialog() {
+    this.displayNewEntryDialog = true;
+  }
+
+  newEntry() {
+    this.entryService.save(this.entry).subscribe()
+    this.entry = new Entry();
+    this.onDialogHide();
+  }
+  checkNewEntryIsValid() {
+    return !(this.entry.title.length > 0 && this.entry.password.length > 0 && this.entry.loginText.length > 0)
+  }
+
+
 }
