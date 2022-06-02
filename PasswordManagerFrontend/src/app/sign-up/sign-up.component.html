@@ -1,6 +1,6 @@
 <div class="card my-5" id="cont">
   <div class="p-fluid grid" id="LoginContainer">
-    <p-card header="Login" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <p-card header="Sign Up" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
       <ng-template pTemplate="header">
       </ng-template>
       <div class="field col-12 md:col-4" id="formInput1">
@@ -15,11 +15,15 @@
             <label for="password">Password</label>
         </span>
       </div>
+      <div class="field col-12 md:col-4" id="formInput3">
+        <span class="p-float-label">
+            <input type="password" id="confirmPassword" pPassword [(ngModel)]="model.confirmPassword" [feedback]="false">
+            <label for="confirmPassword">Repeat Password</label>
+        </span>
+      </div>
       <ng-template pTemplate="footer">
-        <p-button label="Login" icon="pi pi-lock-open" (onClick)="login()" [disabled]="checkEntryIsValid()"></p-button>
-        <p-button label="Sign Up" icon="pi pi-lock-open" (onClick)="SignUp()" [style]="{'margin-top': '1rem'}"></p-button>
+        <p-button label="Sign Up" icon="pi pi-user-plus" (onClick)="SignUp()" [disabled]="validate()" [style]="{'margin-top': '0.2rem'}"></p-button>
       </ng-template>
-
       <p-messages [(value)]="msgs"></p-messages>
 
     </p-card>

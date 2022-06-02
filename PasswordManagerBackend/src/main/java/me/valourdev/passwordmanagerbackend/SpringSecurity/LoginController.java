@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Base64;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -21,6 +23,7 @@ public class LoginController {
 
     private final UserRepository userRepository;
     private boolean isValid = false;
+    private boolean signupValid = false;
 
     public LoginController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -28,7 +31,7 @@ public class LoginController {
 
     @RequestMapping("/api/v1/auth/login/{username}/{password}")
     public boolean login(@RequestBody User user, @PathVariable String username, @PathVariable String password) {
-        return validateLogin(username, password);
+        return validateLogin(username.toLowerCase(Locale.ROOT), password);
     }
 
     public boolean validateLogin(String username, String password) {
@@ -37,12 +40,30 @@ public class LoginController {
         users.forEach(user -> {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 context.getServletContext().setAttribute("UserID", user.getId());
-                System.out.println("UserID: " + context.getServletContext().getAttribute("UserID"));
                 isValid = true;
             }
         });
-        System.out.println(isValid);
         return isValid;
+    }
+
+
+    @RequestMapping("/api/v1/auth/signup/{username}/{password}")
+    public boolean SignUp(@RequestBody User user, @PathVariable String username, @PathVariable String password) {
+        return validateSignup(username.toLowerCase(Locale.ROOT), password);
+    }
+
+    private boolean validateSignup(String username, String password) {
+        if(this.userRepository.findByUsername(username) == null) { addUser(username, password); return true; }  //if username is not taken
+        return false;
+    }
+
+    private void addUser(String username, String password) {
+        this.userRepository.save(new User(username, password));
+    }
+
+    @RequestMapping("/api/v1/auth/logout")
+    public void logout() {
+        context.getServletContext().setAttribute("UserID", null);
     }
 
     @RequestMapping("/api/v1/auth/user")

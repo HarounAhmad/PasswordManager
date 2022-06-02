@@ -1,5 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-main',
@@ -11,13 +13,14 @@ export class MainComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private http: HttpClient
   ) {
   }
 
   listEntriesButtonText: string = 'List Entries';
   addEntryButtonText: string = 'Add Entry';
   logoutButtonText: string = 'Logout';
-
+  logoutURL: string = 'http://localhost:8080/api/v1/auth/logout';
 
   username: any = sessionStorage.getItem('username');
 
@@ -30,9 +33,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/main/entries'])
   }
 
-  goToAddNewEntry() {
-    this.router.navigate(['/main/newEntry'])
-  }
+
 
   goToHome() {
     this.router.navigate(['/main/'])
@@ -42,6 +43,7 @@ export class MainComponent implements OnInit {
   logout() {
     sessionStorage.removeItem('username');
     this.router.navigate(['/login'])
+    this.http.get(this.logoutURL);
   }
 
   ResizeComponent(){

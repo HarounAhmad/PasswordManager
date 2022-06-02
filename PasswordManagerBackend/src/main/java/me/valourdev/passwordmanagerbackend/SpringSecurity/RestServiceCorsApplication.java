@@ -8,7 +8,7 @@ public class RestServiceCorsApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080", "http://minikube:31500");
+                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
             }
         };
     }

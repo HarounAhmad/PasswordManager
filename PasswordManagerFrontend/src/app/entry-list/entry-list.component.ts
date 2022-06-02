@@ -3,7 +3,7 @@ import {Entry} from "../entry";
 import {EntryService} from "../entry.service"
 import {Router} from "@angular/router";
 import {Clipboard} from "@angular/cdk/clipboard";
-import {MenuItem} from "primeng/api";
+import {MenuItem, Message} from "primeng/api";
 import {Table} from "primeng/table";
 import {stringify} from "@angular/compiler/src/util";
 
@@ -20,12 +20,20 @@ export class EntryListComponent implements OnInit {
   selectEntry: Entry = new Entry();
   innerWidth: any;
 
+  SaveButtonText: string = "Save";
+  CancelButtonText: string = "Cancel";
+
+  entry: Entry;
+
+  displayNewEntryDialog: boolean = false;
+
 
 
   constructor(
     private entryService: EntryService,
     private router: Router,
   ) {
+    this.entry = new Entry();
   }
 
   ngOnInit(): void {
@@ -45,13 +53,8 @@ export class EntryListComponent implements OnInit {
 
   }
 
-
-
-
-
   deleteEntry(id: number) {
     this.entryService.delete(id).subscribe(data => {
-      console.log(data)
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {
         this.router.navigate(['/main/entries'])
       })
@@ -59,7 +62,7 @@ export class EntryListComponent implements OnInit {
   }
 
   editEntry(selectEntry: Entry) {
-      this.entryService.edit(selectEntry).subscribe(data => console.log(selectEntry.id + "\n" + data))
+      this.entryService.edit(selectEntry).subscribe()
       this.display = false
   }
 
@@ -68,11 +71,24 @@ export class EntryListComponent implements OnInit {
     this.display = true;
   }
 
+  showNewEntryDialog() {
+    this.displayNewEntryDialog = true;
+  }
+
+  newEntry() {
+    this.entryService.save(this.entry).subscribe()
+    this.displayNewEntryDialog = false;
+    this.entry = new Entry();
+  }
+  checkNewEntryIsValid() {
+    return !(this.entry.title.length > 0 && this.entry.password.length > 0 && this.entry.loginText.length > 0)
+  }
+
   checkEntryIsValid() {
     return !(this.selectEntry.title.length > 0 && this.selectEntry.password.length > 0 && this.selectEntry.loginText.length > 0)
   }
 
-  copyPassword(password: string) {
+  copyText(password: string) {
     navigator.clipboard.writeText(password).then().catch(e => console.error(e));
   }
 
@@ -83,7 +99,7 @@ export class EntryListComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.innerWidth = window.innerWidth;
-    if(this.innerWidth < 900) {
+    if (this.innerWidth < 900) {
       this.router.navigate(['/main/entrieslowres'])
     } else {
       this.router.navigate(['/main/entries'])
@@ -97,4 +113,12 @@ export class EntryListComponent implements OnInit {
     } else { window.open('http://' + entry.url, '_blank') }
 
   }
+
+
+  cancelEdit() {
+    this.onDialogHide();
+  }
+
+
+
 }

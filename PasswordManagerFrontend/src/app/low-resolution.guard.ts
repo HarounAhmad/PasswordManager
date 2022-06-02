@@ -14,7 +14,6 @@ export class LowResolutionGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
     if(this.innerWidth > 900) {
       return true;
     } else {
@@ -26,7 +25,6 @@ export class LowResolutionGuard implements CanActivate {
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
   }
 
 
