@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pm-frontend
+  labels:
+    app.kubernetes.io/name: load-balancer-pm-frontend
 spec:
   selector:
     matchLabels:
@@ -17,4 +19,4 @@ spec:
           image: pm-frontend:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: 4200

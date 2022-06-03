@@ -50,7 +50,6 @@ export class EntriesListLowResolutionComponent implements OnInit {
 
 
 
-
   deleteEntry(id: number) {
     this.entryService.delete(id).subscribe(data => {
       this.router.navigateByUrl("/", {skipLocationChange: true}).then(() => {

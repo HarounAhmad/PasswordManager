@@ -12,7 +12,7 @@ import {Message} from "primeng/api";
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  private url: string = "http://minikube:31500/api/v1/auth/login";
+  private url: string = "http://pm-backend:8080/api/v1/auth/login";
   msgs: Message[];
 
   constructor(

@@ -12,7 +12,7 @@ import {HttpClient} from "@angular/common/http";
 export class SignUpComponent implements OnInit {
 
   model: any = {};
-  private url: string = "http://localhost:8080/api/v1/auth/signup";
+  private url: string = "http://pm-backend:8080/api/v1/auth/signup";
   msgs: Message[];
 
   constructor(
