@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pm-backend
+spec:
+  selector:
+    matchLabels:
+      app: pm-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pm-backend
+    spec:
+      containers:
+        - name: pm-backend
+          image: pm-backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

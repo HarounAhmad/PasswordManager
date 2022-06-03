@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pm-frontend
+  name: pm-frontend
+  namespace: dev
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.102.209
+  clusterIPs:
+    - 10.100.102.209
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - nodePort: 32000
+      port: 4200
+      protocol: TCP
+      targetPort: 4200
+  selector:
+    app: pm-frontend
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+      - ip: 10.100.102.209
